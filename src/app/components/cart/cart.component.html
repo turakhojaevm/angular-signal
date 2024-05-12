@@ -1,0 +1,10 @@
+<app-filter [roleInput]="'search'"
+            [type]="'search'"
+            [placeholder]="'Search'" (text)="filterCart($event)"></app-filter>
+
+<ul class="list-group">
+  <li class="list-group-item active" aria-current="true">Cart list of products</li>
+  @for(cart of carts; track cart; let inx = $index) {
+    <li class="list-group-item">{{ cart.name }}</li>
+  }
+</ul>

@@ -1,0 +1,6 @@
+<form class="d-flex mb-3" [formGroup]="addProductForm">
+  <input class="form-control me-2" formControlName="name" type="text" placeholder="Название">
+  <input class="form-control me-2" formControlName="category" type="text" placeholder="Категория">
+  <input class="form-control me-2" formControlName="price" type="number" placeholder="Цена">
+  <button class="btn btn-outline-success" type="submit" (click)="addProduct($event)">Добавить</button>
+</form>

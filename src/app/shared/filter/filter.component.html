@@ -1,0 +1,6 @@
+<form class="d-flex mb-3" [attr.role]="role()">
+  <input class="form-control" [type]="type()"
+         [placeholder]="placeholder()"
+         [attr.aria-label]="placeholder()"
+         (keyup)="filter($event)">
+</form>
