@@ -1,7 +1,7 @@
 import {Component, effect} from '@angular/core';
-import {ProductService} from "../../services/product.service";
-import {FilterProductService} from "../../services/filter-product.service";
-import {FilterComponent} from "../../shared/filter/filter.component";
+import {ProductService} from "@services/product.service";
+import {FilterProductService} from "@services/filter-product.service";
+import {FilterComponent} from "@shared/filter/filter.component";
 import {IProduct} from "../products/models";
 
 @Component({
