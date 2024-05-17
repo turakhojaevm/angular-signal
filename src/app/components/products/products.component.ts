@@ -1,12 +1,12 @@
 import {Component, effect} from '@angular/core';
-import {ProductService} from "@services/product.service";
-import {FilterProductService} from "@services/filter-product.service";
-import {FilterComponent} from "@shared/filter/filter.component";
-import {AddProductComponent} from "./add-product/add-product.component";
-import {IProduct} from "./models";
+import {ProductService} from '@services/product.service';
+import {FilterProductService} from '@services/filter-product.service';
+import {FilterComponent} from '@shared/filter/filter.component';
+import {AddProductComponent} from './add-product/add-product.component';
+import {IProduct} from './models';
 
 @Component({
-  selector: 'app-products',
+  selector: 'as-products',
   standalone: true,
   imports: [FilterComponent, AddProductComponent],
   templateUrl: './products.component.html',
@@ -15,7 +15,7 @@ import {IProduct} from "./models";
 export class ProductsComponent {
   products: IProduct[] = [];
   productsFilter: IProduct[] = [];
-  filterProductText: string =  '';
+  filterProductText: string = '';
 
   constructor(
     private readonly productService: ProductService,

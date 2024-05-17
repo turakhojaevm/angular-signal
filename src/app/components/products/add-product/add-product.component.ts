@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {PRODUCTS} from "../products";
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {PRODUCTS} from '../products';
 
 @Component({
-  selector: 'app-add-product',
+  selector: 'as-add-product',
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './add-product.component.html',

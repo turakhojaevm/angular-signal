@@ -1,0 +1,63 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@typescript-eslint/interface-name-prefix": "off",
+        "@angular-eslint/no-output-on-prefix": "error",
+        "@typescript-eslint/no-unused-expressions": "error",
+        "@typescript-eslint/no-empty-interface": "error",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/adjacent-overload-signatures": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/prefer-function-type": "error",
+        "@typescript-eslint/quotes": ["error", "single"],
+        "@typescript-eslint/explicit-function-return-type": ["error"],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "as",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "as",
+            "style": "camelCase"
+          }
+        ],
+        "prefer-const": "error",
+        "no-multiple-empty-lines": "error",
+        "no-multi-spaces": "error",
+        "space-in-parens": "error",
+        "arrow-body-style": "off",
+        "prefer-arrow-callback": "off"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility"
+      ],
+      "rules": {}
+    }
+  ]
+}

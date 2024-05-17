@@ -1,11 +1,11 @@
 import {Component, effect} from '@angular/core';
-import {ProductService} from "@services/product.service";
-import {FilterProductService} from "@services/filter-product.service";
-import {FilterComponent} from "@shared/filter/filter.component";
-import {IProduct} from "../products/models";
+import {ProductService} from '@services/product.service';
+import {FilterProductService} from '@services/filter-product.service';
+import {FilterComponent} from '@shared/filter/filter.component';
+import {IProduct} from '../products/models';
 
 @Component({
-  selector: 'app-cart',
+  selector: 'as-cart',
   standalone: true,
   imports: [FilterComponent],
   templateUrl: './cart.component.html',

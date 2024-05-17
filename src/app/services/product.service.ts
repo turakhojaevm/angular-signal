@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, of} from "rxjs";
-import {PRODUCTS} from "@components/products/products";
-import {toSignal} from "@angular/core/rxjs-interop";
-import {IProduct} from "@components/products/models";
+import {BehaviorSubject, of} from 'rxjs';
+import {PRODUCTS} from '@components/products/products';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {IProduct} from '@components/products/models';
 
 @Injectable({
   providedIn: 'root'

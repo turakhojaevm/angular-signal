@@ -1,8 +1,8 @@
 import {Component, EventEmitter, input, Output} from '@angular/core';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
 
 @Component({
-  selector: 'app-filter',
+  selector: 'as-filter',
   standalone: true,
   imports: [FormsModule],
   templateUrl: './filter.component.html',
