@@ -1,7 +1,8 @@
 <as-filter [roleInput]="'search'"
-            [type]="'search'"
-            [placeholder]="'Search'"
-            (text)="filterProduct($event)"></as-filter>
+           [type]="'search'"
+           [placeholder]="'Search'"
+           [dataId]="'productSearch'"
+           (text)="filterProduct($event)"></as-filter>
 
 <div class="card p-4">
 
@@ -25,7 +26,7 @@
           <td>{{ product.category }}</td>
           <td>{{ product.price }}</td>
           <td>
-            <button class="btn btn-success" (click)="addToCart(product)">Дабовить в карту</button>
+            <button class="btn btn-success" (click)="addToCart(product)">Добавить в карту</button>
           </td>
         </tr>
       }

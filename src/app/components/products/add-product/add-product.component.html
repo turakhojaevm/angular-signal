@@ -1,4 +1,4 @@
-<form class="d-flex mb-3" [formGroup]="addProductForm">
+<form class="d-flex mb-3" [attr.data-id]="'add-product'" [formGroup]="addProductForm">
   <input class="form-control me-2" formControlName="name" type="text" placeholder="Название">
   <input class="form-control me-2" formControlName="category" type="text" placeholder="Категория">
   <input class="form-control me-2" formControlName="price" type="number" placeholder="Цена">

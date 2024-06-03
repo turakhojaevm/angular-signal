@@ -2,5 +2,6 @@
   <input class="form-control" [type]="type()"
          [placeholder]="placeholder()"
          [attr.aria-label]="placeholder()"
+         [attr.data-id]="dataId()"
          (keyup)="filter($event)">
 </form>

@@ -13,6 +13,7 @@ export class FilterComponent {
   role = input.required<string>({alias: 'roleInput'});
   type = input.required<string>();
   placeholder = input.required<string>();
+  dataId = input.required<string>();
   @Output() text = new EventEmitter<string>();
 
   filter(text: any): void {
