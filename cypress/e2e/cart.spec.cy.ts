@@ -1,6 +1,6 @@
 describe('template cart', (): void => {
   beforeEach('add', (): void => {
-    cy.visit('/')
+    cy.visit('/');
   });
 
   it('add to cart', (): void => {
@@ -11,8 +11,6 @@ describe('template cart', (): void => {
     cy.get('table').children().eq(1).children().eq(3).contains('Добавить в карту').click();
     cy.get('table').children().eq(1).children().eq(4).contains('Добавить в карту').click();
   });
-
-
 
   it('cart', (): void => {
     cy.get('[data-id="cartSearch"]').should('have.class', 'form-control').type('RC');
