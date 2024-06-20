@@ -1,48 +1,49 @@
-import {Component, effect} from '@angular/core';
-import {ProductService} from '@services/product.service';
-import {FilterProductService} from '@services/filter-product.service';
+import {Component, OnInit} from '@angular/core';
 import {FilterComponent} from '@shared/filter/filter.component';
 import {AddProductComponent} from './add-product/add-product.component';
 import {IProduct} from './models';
+import {finalize} from "rxjs";
+import {CartService} from "@components/cart/services/cart.service";
+import {ProductsService} from "@components/products/services/products.service";
 
 @Component({
   selector: 'as-products',
   standalone: true,
   imports: [FilterComponent, AddProductComponent],
   templateUrl: './products.component.html',
-  styleUrl: './products.component.sass'
+  styleUrl: './products.component.sass',
+  providers: [
+    ProductsService,
+    CartService,
+  ],
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
   products: IProduct[] = [];
-  productsFilter: IProduct[] = [];
-  filterProductText: string = '';
+  loading: boolean = true;
 
   constructor(
-    private readonly productService: ProductService,
-    private readonly filterProductService: FilterProductService,
+    private readonly productsService: ProductsService,
+    private readonly cartService: CartService,
   ) {
-    effect(() => {
-      this.loadProducts();
+  }
+
+  ngOnInit(): void {
+    this.productsService.getProducts().pipe(
+      finalize(() => this.loading = false)
+    ).subscribe(res => {
+      this.products = res;
     });
   }
 
-  loadProducts(): void {
-    this.filterProductText = this.filterProductService.filterProduct();
-    this.products = this.productService.product();
-    this.productsFilter = this.productService.product();
-
-    if (this.filterProductText) {
-      this.products = this.products.filter(p => p.name.toLowerCase().includes(this.filterProductText.toLowerCase()));
-    } else if (!this.filterProductText) {
-      this.products = this.productsFilter;
-    }
-  }
-
   filterProduct(text: string): void {
-    this.filterProductService.filterProduct.set(text);
+    this.productsService.filterProduct(text).pipe(
+      finalize(() => this.loading = false)
+    ).subscribe(res => {
+      this.products = res;
+    });
   }
 
-  addToCart(product: any): void {
-    this.productService.cartProducts.unshift(product);
+  addToCart(product: IProduct): void {
+    this.cartService.addCart(product).then();
   }
 }

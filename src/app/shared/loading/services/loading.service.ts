@@ -3,9 +3,9 @@ import {Injectable, signal} from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class FilterProductService {
+export class LoadingService {
 
-  filterProduct = signal<string>('');
-  filterCart = signal<string>('');
+  readonly loading = signal<boolean>(false)
+
   constructor() { }
 }

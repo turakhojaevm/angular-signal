@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {PRODUCTS} from '../products';
-import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {ProductsService} from "@components/products/services/products.service";
 
 @Component({
   selector: 'as-add-product',
@@ -10,13 +9,13 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.sass',
   providers: [
-    AngularFirestore
+    ProductsService
   ]
 })
 export class AddProductComponent {
 
   constructor(
-    private readonly firestore: AngularFirestore,
+    private readonly productsService: ProductsService,
   ) {}
 
   addProductForm: FormGroup = this.initForm();
@@ -26,8 +25,7 @@ export class AddProductComponent {
     if (this.addProductForm.invalid) {
       return;
     }
-    this.firestore.collection('products').add(this.addProductForm.value).then(v => console.log(v));
-    // PRODUCTS.unshift(this.addProductForm.value);
+    this.productsService.addProduct(this.addProductForm.value).then();
     this.addProductForm.reset();
   }
 

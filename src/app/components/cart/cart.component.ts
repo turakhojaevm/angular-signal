@@ -1,45 +1,45 @@
-import {Component, effect} from '@angular/core';
-import {ProductService} from '@services/product.service';
-import {FilterProductService} from '@services/filter-product.service';
+import {Component, OnInit} from '@angular/core';
 import {FilterComponent} from '@shared/filter/filter.component';
 import {IProduct} from '../products/models';
+import {CartService} from "@components/cart/services/cart.service";
+import {CurrencyPipe} from "@angular/common";
 
 @Component({
   selector: 'as-cart',
   standalone: true,
-  imports: [FilterComponent],
+  imports: [FilterComponent, CurrencyPipe],
+  providers: [
+    CartService,
+  ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.sass'
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
 
   carts: IProduct[] = [];
-  cartsFilter: IProduct[] = [];
-  filterCartText: string = '';
 
   constructor(
-    private readonly productService: ProductService,
-    private readonly filterProductService: FilterProductService,
-  ) {
-    effect(() => {
-      this.loadCart();
-    });
+    private readonly cartService: CartService,
+  ) {}
+
+  ngOnInit(): void {
+    this.cartService.getCart()
+      .subscribe(cart => {
+        this.carts = cart;
+      })
   }
 
-  loadCart(): void {
-    this.filterCartText = this.filterProductService.filterCart();
-    this.carts = this.productService.productCart();
-    this.cartsFilter = this.productService.productCart();
-
-    if (this.filterCartText) {
-      this.carts = this.carts.filter(c => c.name.toLowerCase().includes(this.filterCartText.toLowerCase()));
-    } else if (!this.filterCartText) {
-      this.carts = this.cartsFilter;
-    }
+  filterCart(name: string): void {
+    this.cartService.filterCart(name)
+      .subscribe(cart => {
+        this.carts = cart;
+      })
   }
 
-  filterCart(text: string): void {
-    this.filterProductService.filterCart.set(text);
+  deleteFromCart(productId: any): void {
+    this.cartService.deleteProductCart(productId)
+      .then(() => console.log('Successfully deleted cart item.'))
+      .catch(() => console.log('Failed to delete cart.'));
   }
 
 }
