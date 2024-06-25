@@ -6,10 +6,16 @@
 
 <ul class="list-group">
   <li class="list-group-item active" aria-current="true">Cart list of products</li>
-  @for(cart of carts; track cart) {
+  @for (cart of carts; track cart) {
     <li class="list-group-item list d-flex justify-content-between">
       {{ cart.name }}
-      <button class="btn btn-danger" (click)="deleteFromCart(cart.id)">D</button>
+      <span>{{ cart.price | currency: 'USD' }}</span>
+      <button class="btn btn-danger" (click)="deleteFromCart(cart)">D</button>
+    </li>
+  }
+  @if (carts.length) {
+    <li class="list-group-item active" aria-current="true">
+      Total price: <span>{{ totalPrice | currency: 'USD' }}</span>
     </li>
   }
 </ul>

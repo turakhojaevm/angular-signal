@@ -9,7 +9,7 @@ import {map, Observable} from "rxjs";
 export class CartService {
 
   constructor(
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
   ) { }
 
   addCart(product: IProduct): Promise<any> {
@@ -17,14 +17,15 @@ export class CartService {
   }
 
   getCart(): Observable<IProduct[]> {
-    return this.firestore.collection('cart').snapshotChanges().pipe(map(res => {
-      return res.map(item => {
-        return {
-          id: item.payload.doc.id,
-          ...item.payload.doc.data() as IProduct
-        }
-      })
-    }));
+    return this.firestore.collection('cart')
+      .snapshotChanges().pipe(map(res => {
+        return res.map(item => {
+          return {
+            id: item.payload.doc.id,
+            ...item.payload.doc.data() as IProduct
+          }
+        });
+      }));
   }
 
   filterCart(name: string): Observable<IProduct[]> {
@@ -39,7 +40,7 @@ export class CartService {
       }));
   }
 
-  deleteProductCart(id: string): Promise<void> {
-    return this.firestore.collection('cart').doc(id).delete();
+  deleteProductCart(product: IProduct): Promise<void> {
+    return this.firestore.collection('cart').doc(product.id).delete();
   }
 }

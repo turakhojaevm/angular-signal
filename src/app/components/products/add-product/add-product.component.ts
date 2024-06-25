@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ProductsService} from "@components/products/services/products.service";
 
@@ -14,9 +14,9 @@ import {ProductsService} from "@components/products/services/products.service";
 })
 export class AddProductComponent {
 
-  constructor(
-    private readonly productsService: ProductsService,
-  ) {}
+  @Output() product = new EventEmitter<string>();
+
+  constructor() {}
 
   addProductForm: FormGroup = this.initForm();
 
@@ -25,7 +25,7 @@ export class AddProductComponent {
     if (this.addProductForm.invalid) {
       return;
     }
-    this.productsService.addProduct(this.addProductForm.value).then();
+    this.product.emit(this.addProductForm.value);
     this.addProductForm.reset();
   }
 
